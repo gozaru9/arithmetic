@@ -9,7 +9,6 @@ app.set("view engine", "ejs");
 app.get('/', function(req, res) {
 
     let now = new Date();
-    console.log(now.toFormat('YYYY年MM月DD日 HH24時MI分SS秒'));
     const items = getTodayItems(count);
     res.render('index.ejs', {
         title: "足し算", 
@@ -28,10 +27,9 @@ function getTodayItems(count) {
         let rightSide = createPlusItem(leftSide, 1);
         items.push({ 'index': index,'leftSide': leftSide, 'rightSide': rightSide, 'answer': leftSide + rightSide })
     }
-    console.log(items);
     return items;
 }
 
 var createPlusItem = (max, min) => Math.floor( Math.random() * (max + 1 - min) ) + min;
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.set('port', process.env.PORT || 5050);
+app.listen(app.get('port'), ()=>{ console.log("Node app is running at localhost:" + app.get('port')); });
