@@ -32,6 +32,7 @@ function getTodayItems(count) {
     return items;
 }
 
-var createPlusItem = (max, min) => Math.floor( Math.random() * (max + 1 - min) ) + min;
+var createPlusItem = (max, min) => Math.floor( Math.random() * ( parseInt(max) + 1 - parseInt(min) ) ) + parseInt(min);
+
 app.set('port', process.env.PORT || 5050);
 app.listen(app.get('port'), ()=>{ console.log("Node app is running at localhost:" + app.get('port')); });
