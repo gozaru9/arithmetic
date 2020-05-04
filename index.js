@@ -4,6 +4,7 @@ const dateUtils = require('date-utils')
 const app = express()
 
 const count = process.env.COUNT || 20;
+const max = process.env.MAX_VALUE || 10;
 
 app.set("view engine", "ejs");
 app.get('/', function(req, res) {
@@ -24,7 +25,7 @@ function getTodayItems(count) {
     let items = [];
     for (let index = 0; index < count; index++)
     {
-        let leftSide = createPlusItem(10, 1);
+        let leftSide = createPlusItem(max, 1);
         let rightSide = createPlusItem(leftSide, 1);
         items.push({ 'index': index,'leftSide': leftSide, 'rightSide': rightSide, 'answer': leftSide + rightSide })
     }
