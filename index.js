@@ -4,7 +4,7 @@ const dateUtils = require('date-utils')
 const app = express()
 
 const count = process.env.COUNT || 20;
-const max = process.env.MAX_VALUE || 10;
+const max = process.env.MAX_LEFT_VALUE || 20;
 
 app.set("view engine", "ejs");
 app.get('/', function(req, res) {
