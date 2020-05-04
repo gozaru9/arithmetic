@@ -12,7 +12,7 @@ app.get('/', function(req, res) {
     const items = getTodayItems(count);
     res.render('index.ejs', {
         title: "足し算", 
-        date: now.toFormat('YYYY年MM月DD日 HH24時MI分SS秒'),
+        date: now.toFormat('YYYY年MM月DD日'),
         items: items,
         total: count
     });
