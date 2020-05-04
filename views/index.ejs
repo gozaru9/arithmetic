@@ -20,6 +20,7 @@
 
     <div class="uk-card uk-card-default uk-card-body">
 
+        <input type="hidden" value="<%= total %>" id="total" >
         <table class="uk-table">
             <thead>
                 <tr>
@@ -29,21 +30,19 @@
                 </tr>
             </thead>
             <tbody>
-
-
                 <% for (let item of items) { %>
                     <tr class="uk-h2">
                         <td><%- item.leftSide %></td>
                         <td>+</td>
                         <td><%- item.rightSide %></td>
                         <td>=</td>
-                        <td>
+                        <td  class="answer-input">
                             <div>
                                 <input id="<%- item.index %>" class="uk-input uk-form-width-medium uk-form-large input-answer" type="text">
                             </div>
                         </td>
                         <td>
-                            <button class="uk-button uk-button-primary uk-button-large answer" value="<%- item.index %>">かいとうする</button>
+                            <button class="uk-button uk-button-primary uk-button-large uk-width-1-1 answer" value="<%- item.index %>">かいとうする</button>
                             <input type="hidden" value="<%- item.answer %>"
                         </td>
                     </tr>
@@ -61,23 +60,40 @@ $(function() {
 
         const index = $(ev.target).val();
         const inputAnswerElement = $('#'+index);
+        if ('' === inputAnswerElement.val()) return ;
+        const inputAnswerVal = hankaku2Zenkaku(inputAnswerElement.val());
         const answer = $(ev.target).next().val();
-        console.log(answer);
 
-        if ( inputAnswerElement.val() == answer) {
+        if (inputAnswerVal == answer) {
             $(inputAnswerElement).removeClass('wrong');
             $(inputAnswerElement).addClass('circle');
         } else {
 
             $(inputAnswerElement).addClass('wrong');
         }
+        console.log($('.circle').length);
+
+        if ($('#total') == $('.circle').length) {
+
+            UIkit.modal.alert('全問正解だよ！');
+        }
 
     });
+
+    function hankaku2Zenkaku(str) {
+        return str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+            return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+    });
+}    
 
 });
 </script>
 
 <style>
+.answer-input {
+    width: 200px;
+}
+
 .circle {
   position: relative;
   display: inline-block;

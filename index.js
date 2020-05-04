@@ -3,7 +3,7 @@ const dateUtils = require('date-utils')
 
 const app = express()
 
-const count = 10;
+const count = process.env.COUNT || 20;
 
 app.set("view engine", "ejs");
 app.get('/', function(req, res) {
@@ -13,7 +13,8 @@ app.get('/', function(req, res) {
     res.render('index.ejs', {
         title: "足し算", 
         date: now.toFormat('YYYY年MM月DD日 HH24時MI分SS秒'),
-        items: items
+        items: items,
+        total: count
     });
 
 });
