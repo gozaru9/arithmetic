@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <title>算数</title>
+</head>
+<body>
+
+    <div class="uk-card uk-card-body uk-card-primary">
+        <h3 class="uk-card-title">
+            <%= date %>
+        </h3>
+    </div>
+
+    <div class="uk-card uk-card-default uk-card-body">
+
+        <table class="uk-table">
+            <thead>
+                <tr>
+                    <th class="uk-h2" colspan="5">
+                        <p class="uk-text-large">たしざんのもんだい</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <% for (let item of items) { %>
+                    <tr class="uk-h2">
+                        <td><%- item.leftSide %></td>
+                        <td>+</td>
+                        <td><%- item.rightSide %></td>
+                        <td>=</td>
+                        <td>
+                            <div>
+                                <input id="<%- item.index %>" class="uk-input uk-form-width-medium uk-form-large input-answer" type="text">
+                            </div>
+                        </td>
+                        <td>
+                            <button class="uk-button uk-button-primary uk-button-large answer" value="<%- item.index %>">かいとうする</button>
+                            <input type="hidden" value="<%- item.answer %>"
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+<script>
+$(function() {
+
+    $('.answer').on('click', function(ev) {
+
+        const index = $(ev.target).val();
+        const inputAnswerElement = $('#'+index);
+        const answer = $(ev.target).next().val();
+        console.log(answer);
+
+        if ( inputAnswerElement.val() == answer) {
+            $(inputAnswerElement).removeClass('wrong');
+            $(inputAnswerElement).addClass('circle');
+        } else {
+
+            $(inputAnswerElement).addClass('wrong');
+        }
+
+    });
+
+});
+</script>
+
+<style>
+.circle {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: solid 1px red;
+  text-align:center;
+  line-height: 80px;
+  right: -50px;
+  top: -10px;
+}
+.wrong {
+    background-color: red;
+}
+</style>
+
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "arithmetic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gozaru9/arithmetic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gozaru9/arithmetic/issues"
+  },
+  "homepage": "https://github.com/gozaru9/arithmetic#readme",
+  "dependencies": {
+    "date-utils": "^1.2.21",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "install": "^0.13.0",
+    "npm": "^6.14.4"
+  }
+}
